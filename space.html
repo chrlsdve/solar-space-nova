@@ -5,323 +5,84 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Solar Space of Nova</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="space.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;600&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="images/stare.ico">
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background: radial-gradient(circle, #1e1e2f, #000013);
-            color: #fff;
-            margin: 0;
-            padding: 2rem;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 2rem;
-            justify-content: center;
-            overflow-x: hidden;
-            text-align: center;
-        }
-
-        .star-logo {
-            cursor: pointer;
-            animation: pulse 2s infinite;
-            width: 150px;
-            height: auto;
-            margin-bottom: 10px;
-        }
-
-        header {
-            text-align: center;
-            opacity: 0;
-            transform: translateY(-20px);
-            animation: fadeIn 1.5s ease forwards;
-        }
-
-        header h1 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 3rem;
-            font-weight: 700;
-            margin: 0.5rem 0;
-        }
-
-        .welcome-message {
-            font-size: 1.5rem;
-            font-weight: 300;
-            max-width: 800px;
-            margin: 1rem auto;
-            padding: 1rem;
-            border-radius: 12px;
-            background: rgba(255, 255, 255, 0.1);
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
-        }
-
-        .external-link {
-            font-size: 1.2rem;
-            color: #d4e4ff;
-            text-decoration: none;
-            font-weight: bold;
-            margin-top: 1rem;
-            display: inline-block;
-            padding: 0.8rem 1.5rem;
-            border-radius: 8px;
-            background: linear-gradient(45deg, #0a0a2a, #1a1a40);
-            border: 2px solid rgba(212, 228, 255, 0.5);
-            transition: background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-family: 'Orbitron', sans-serif;
-            box-shadow: 0 0 12px rgba(0, 102, 255, 0.5);
-        }
-        
-        .external-link:hover {
-            background: linear-gradient(45deg, #222255, #0f0f1a);
-            color: #ffffff;
-            transform: scale(1.05);
-            box-shadow: 0 0 20px rgba(0, 132, 255, 1);
-            border-color: rgba(212, 228, 255, 0.8);
-        }
-        
-        .external-link:active {
-            transform: scale(0.98);
-            box-shadow: 0 0 25px rgba(0, 132, 255, 0.8);
-        }
-        /* Modal Background */
-.modal {
-    display: none; /* Hidden by default */
-    position: fixed;
-    z-index: 1000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
-    backdrop-filter: blur(5px);
-    justify-content: center;
-    align-items: center;
-}
-
-/* Modal Content */
-.modal-content {
-    background: linear-gradient(45deg, #0a0a2a, #1a1a40);
-    color: #d4e4ff;
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 0 20px rgba(0, 102, 255, 0.8);
-    max-width: 500px;
-    text-align: center;
-    animation: fadeIn 0.5s ease-in-out;
-}
-
-/* Close Button */
-.close {
-    color: #ffffff;
-    font-size: 2rem;
-    font-weight: bold;
-    position: absolute;
-    right: 20px;
-    top: 10px;
-    cursor: pointer;
-    transition: color 0.3s ease;
-}
-
-.close:hover {
-    color: #ff4f4f;
-}
-
-/* Fade-in Animation */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(-20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-        
-        .folder-button {
-            background: linear-gradient(45deg, #1a1a40, #0f0f1a);
-            color: #d4e4ff;
-            border: 2px solid rgba(212, 228, 255, 0.5);
-            padding: 0.8rem 1.5rem;
-            font-size: 1.2rem;
-            border-radius: 12px;
-            cursor: pointer;
-            margin: 0.5rem;
-            transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
-            font-family: 'Orbitron', sans-serif;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            box-shadow: 0 0 12px rgba(0, 102, 255, 0.5);
-        }
-        
-        .folder-button:hover {
-            background: linear-gradient(45deg, #222255, #0a0a2a);
-            transform: scale(1.05);
-            box-shadow: 0 0 20px rgba(0, 102, 255, 1);
-            border-color: rgba(212, 228, 255, 0.8);
-        }
-        
-        .folder-button:active {
-            transform: scale(0.98);
-            box-shadow: 0 0 25px rgba(0, 132, 255, 0.8);
-        }
-        
-
-        .queen-container {
-            display: none;
-            gap: 1.5rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeIn 1.5s ease 0.5s forwards;
-        }
-
-        .queen-card {
-            border-radius: 16px;
-            overflow: hidden;
-            cursor: pointer;
-            width: 250px;
-            height: 350px;
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
-            position: relative;
-        }
-
-        .queen-card img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 16px;
-            transition: transform 0.3s ease;
-        }
-
-        .queen-card:hover {
-            transform: scale(1.1);
-            box-shadow: 0 0 30px rgba(246, 246, 246, 0.8);
-        }
-       
-        .landscape {
-            width: 100%;
-            max-width: 600px; /* Adjust width for larger display */
-            height: auto;
-        }
-         
-
-        @keyframes fadeIn {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.2); }
-            100% { transform: scale(1); }
-        }
-    </style>
 </head>
 <body>
+    <div class="parallax-bg"></div>
     <header>
         <img src="images/star.png" alt="Nova Star Logo" class="star-logo" onclick="revealContent()">
         <h1 id="solar-space">Solar Space of Nova</h1>
-        <a href="https://linktr.ee/miskocia" class="external-link" target="_blank">Join our Space</a>
-        <!-- <button class="folder-button" onclick="openModal()">House Info</button> -->
-
-        <p class="welcome-message">Welcome to the Solar Space of Nova, where cosmic beauty meets stellar creativity. Explore our exclusive photoshoot collections and journey through the galaxy of artistry.</p>
+        <a href="https://forms.gle/YGqnMVU9jrLPaDTe9" class="external-link" target="_blank">Join our Space</a>
+        <a href="https://forms.gle/no2zojwLgQFdMb217" class="external-link" target="_blank">Collaborations</a>
+        <!-- <p class="welcome-message">Welcome to the Solar Space of Nova</p> -->
     </header>
 
-    <div id="houseInfoModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal()">&times;</span>
-            <h2>Solar Space of Nova</h2>
-            <p>Welcome to the Solar Space og Nova! A realm where cosmic artistry and stellar creativity unite. Here, we celebrate innovation, vision, and the universe's boundless beauty.</p>
-        </div>
-    </div>
-    
-    <div>
-        <button class="folder-button" onclick="toggleFolder('group')">Group Shots</button>
-    </div>
 
     <div>
-        <button class="folder-button" onclick="toggleFolder('galactic')">Galactic</button>
-        <button class="folder-button" onclick="toggleFolder('y2k')">Y2K</button>
-        <button class="folder-button" onclick="toggleFolder('soon')">Soon</button>
+        <!-- <button class="folder-button" onclick="toggleFolder('group')">Group Shots</button> -->
+        <button class="folder-button" onclick="toggleFolder('Photoshoots')">Photoshoots</button>
+        <button class="folder-button" onclick="toggleFolder('Star_Members')">Star Members</button>
+        <button class="folder-button" onclick="toggleFolder('solar-space-info')">Solar Space Info</button>
     </div>
 
-    <section id="group" class="queen-container ">
+    <section id="group" class="queen-container">
         <div class="queen-card"><img src="images/complete.jpg" alt="Galactic 1"></div>
-        <div class="queen-card landscape">
-            <img src="images/nova3.jpg" alt="Landscape Image">
+        <div class="queen-card landscape"><img src="images/nova3.jpg" alt="Landscape Image"></div>
+    </section>
+
+    <section id="Photoshoots" class="queen-container">
+        <div>
+            <button class="folder-button" onclick="toggleFolder('Galactic')">Galactic</button>
+            <button class="folder-button" onclick="toggleFolder('Y2k')">Y2K</button>
+            <button class="folder-button" onclick="toggleFolder('Soon')">Soon</button>
         </div>
-        
-        <!-- <div class="queen-card"><img src="/images/galaxia.jpg" alt="Galactic 3"></div>
-        <div class="queen-card"><img src="/images/astrrea.jpg" alt="Galactic 4"></div>
-        <div class="queen-card"><img src="/images/tauria.jpg" alt="Galactic 5"></div>
-        <div class="queen-card"><img src="/images/zur.jpg" alt="Galactic 6"></div> -->
-        
     </section>
 
-    
-
-    <section id="galactic" class="queen-container">
-        <div class="queen-card"><img src="images/minty.jpg" alt="Galactic 1"></div>
-        <div class="queen-card"><img src="images/celestia.jpg" alt="Galactic 2"></div>
-        <div class="queen-card"><img src="images/galaxia.jpg" alt="Galactic 3"></div>
-        <div class="queen-card"><img src="images/astrrea.jpg" alt="Galactic 4"></div>
-        <div class="queen-card"><img src="images/tauria.jpg" alt="Galactic 5"></div>
-        <div class="queen-card"><img src="images/zur.jpg" alt="Galactic 6"></div>
-        
+    <section id="Galactic" class="queen-container">
+        <div class="queen-card"><img src="images/minty.jpg" alt="Minty"></div>
+        <div class="queen-card"><img src="images/celestia.jpg" alt="Celestia"></div>
+        <div class="queen-card"><img src="images/galaxia.jpg" alt="Galaxia"></div>
+        <div class="queen-card"><img src="images/astrrea.jpg" alt="Astrea"></div>
+        <div class="queen-card"><img src="images/tauria.jpg" alt="Tauria"></div>
+        <div class="queen-card"><img src="images/zur.jpg" alt="Zur"></div>
     </section>
 
-    <section id="y2k" class="queen-container">
+    <section id="Y2k" class="queen-container">
         <div class="queen-card"><img src="images/minty2.jpg" alt="Y2K 1"></div>
         <div class="queen-card"><img src="images/celestia3.jpg" alt="Y2K 2"></div>
-        <div class="queen-card"><img src="images/galaxia2.jpg" alt="Y2K 2"></div>
-        <div class="queen-card"><img src="images/astrea2.jpg" alt="Y2K 2"></div>
-        <div class="queen-card"><img src="images/tauria_2.jpg" alt="Y2K 2"></div>
-        <div class="queen-card"><img src="images/zur2.jpg" alt="Y2K 2"></div>
+        <div class="queen-card"><img src="images/galaxia2.jpg" alt="Y2K 3"></div>
+        <div class="queen-card"><img src="images/astrea2.jpg" alt="Y2K 4"></div>
+        <div class="queen-card"><img src="images/tauria_2.jpg" alt="Y2K 5"></div>
+        <div class="queen-card"><img src="images/zur2.jpg" alt="Y2K 6"></div>
     </section>
 
-    <section id="soon" class="queen-container">
-        <!-- <div class="queen-card"><img src="/images/soon1.jpg" alt="Soon 1"></div>
-        <div class="queen-card"><img src="/images/soon2.jpg" alt="Soon 2"></div> -->
+    <section id="Star_Members" class="star-members-container">
+        <div class="star-card"><img src="images/star.png" alt="Y2K 1"></div>
+        <div class="star-card"><img src="images/star.png" alt="Y2K 2"></div>
+        <div class="star-card"><img src="images/star.png" alt="Y2K 3"></div>
+        <div class="star-card"><img src="images/star.png" alt="Y2K 4"></div>
+        <div class="star-card"><img src="images/star.png" alt="Y2K 5"></div>
+        <div class="star-card"><img src="images/star.png" alt="Y2K 6"></div>
     </section>
 
-    <script>
-        function toggleFolder(folderId) {
-            document.querySelectorAll('.queen-container').forEach(container => {
-                if (container.id === folderId) {
-                    container.style.display = container.style.display === 'flex' ? 'none' : 'flex';
-                    container.style.opacity = container.style.opacity === '1' ? '0' : '1';
-                } else {
-                    container.style.display = 'none';
-                    container.style.opacity = '0';
-                }
-            });
-        }
-    </script>
-    <script>
-        function openModal() {
-            document.getElementById("houseInfoModal").style.display = "flex";
-        }
-        
-        function closeModal() {
-            document.getElementById("houseInfoModal").style.display = "none";
-        }
-        
-        // Close modal when clicking outside of content
-        window.onclick = function(event) {
-            let modal = document.getElementById("houseInfoModal");
-            if (event.target === modal) {
-                modal.style.display = "none";
-            }
-        };
-        
-    </script>
+    
+    
+
+    <section id="solar-space-info" class="info-section">
+        <h2 class="glow-text">About Solar Space of Nova</h2>
+        <p>Founded by <b>Miskie Nova</b>, Solar Space of Nova is a cosmic collective that blends art, fashion, photography, and performance under a celestial vision. 
+            While we celebrate intergalactic aesthetics, we don’t limit ourselves to just space-themed looks—we serve everything. 
+            From avant-garde fashion to boundary-pushing drag, high-concept editorials to creative storytelling,
+             we create a universe where innovation meets artistry.</p>
+        <p><strong>Mission:</strong> To create an artistic universe where cosmic aesthetics meet innovation and creativity.</p>
+        <p><strong>Members:</strong> A diverse group of stars, each bringing their own unique glow to the galaxy.</p>
+    </section>
+
+    
+
+
+    <script src="space.js"></script>
 </body>
 </html>
